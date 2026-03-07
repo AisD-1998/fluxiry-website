@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluxiry LLC | Modern Software Engineering</title>
+  <meta name="description" content="Fluxiry LLC builds high-performance software, scalable cloud systems, and intelligent digital products for modern businesses.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="nav-logo">FLUXIRY<span>.</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Get in Touch</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <canvas class="hero-bg-canvas" id="heroCanvas"></canvas>
+    <div class="container">
+      <div class="hero-content fade-in">
+        <p class="hero-label">Software Engineering & Cloud Solutions</p>
+        <h1 class="hero-title">Building <em>Next-Gen</em> Software Solutions</h1>
+        <p class="hero-description">We engineer high-performance software, scalable cloud systems, and intelligent digital products that give your business a competitive edge.</p>
+        <div class="hero-actions">
+          <a href="services.html" class="btn btn-primary">Our Services</a>
+          <a href="about.html" class="btn btn-outline">See Our Work</a>
+        </div>
+      </div>
+      <div class="hero-code-block" id="heroCode">
+        <div class="hero-code-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div id="codeContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="fade-in">
+        <p class="section-label">What We Build</p>
+        <h2 class="section-title">End-to-End <span class="gradient-text">Software Solutions</span></h2>
+        <p class="section-subtitle">Engineered for performance, scalability, and impact — from concept to production.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+              <line x1="14" y1="4" x2="10" y2="20"></line>
+            </svg>
+          </div>
+          <h3>Custom Software</h3>
+          <p>Purpose-built applications designed for your specific workflows, powered by modern architectures and clean code.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3>Web Development</h3>
+          <p>High-performance websites and web applications that combine great design with seamless functionality.</p>
+        </div>
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+            </svg>
+          </div>
+          <h3>Technical Consulting</h3>
+          <p>Strategic guidance to help you navigate complex technology decisions and optimize your digital infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-in">
+          <h3 data-target="50">0</h3>
+          <p>Projects Shipped</p>
+        </div>
+        <div class="stat-item fade-in">
+          <h3 data-target="30">0</h3>
+          <p>Clients Served</p>
+        </div>
+        <div class="stat-item fade-in">
+          <h3 data-target="5">0</h3>
+          <p>Years in Business</p>
+        </div>
+        <div class="stat-item fade-in">
+          <h3 data-target="99">0</h3>
+          <p>Client Satisfaction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="section">
+    <div class="container">
+      <div class="fade-in" style="text-align: center;">
+        <p class="section-label">Our Stack</p>
+        <h2 class="section-title">Technologies We <span class="gradient-text">Work With</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto;">We leverage modern, battle-tested technologies to build reliable, scalable systems.</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg>
+          <span>React</span>
+        </div>
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
+          <span>Node.js</span>
+        </div>
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <span>Python</span>
+        </div>
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 16V8l4 4 4-4v8"/></svg>
+          <span>TypeScript</span>
+        </div>
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          <span>AWS</span>
+        </div>
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M9 14h6"/></svg>
+          <span>Docker</span>
+        </div>
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="6" rx="8" ry="4"/><path d="M4 6v6c0 2.2 3.6 4 8 4s8-1.8 8-4V6"/><path d="M4 12v6c0 2.2 3.6 4 8 4s8-1.8 8-4v-6"/></svg>
+          <span>PostgreSQL</span>
+        </div>
+        <div class="tech-item fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5z"/><path d="M12 22V12"/><path d="M2 7l10 5"/><path d="M22 7l-10 5"/></svg>
+          <span>Next.js</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" style="background: var(--color-bg-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="fade-in" style="text-align: center;">
+        <p class="section-label">What Clients Say</p>
+        <h2 class="section-title">Trusted by <span class="gradient-text">Growing Companies</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in">
+          <div class="quote-mark">"</div>
+          <blockquote>Fluxiry delivered our platform ahead of schedule with exceptional code quality. Their engineering team understood our requirements from day one and built exactly what we needed.</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JR</div>
+            <div class="testimonial-info">
+              <h5>James R.</h5>
+              <p>CTO at TechFlow</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <div class="quote-mark">"</div>
+          <blockquote>The technical depth of the Fluxiry team is remarkable. They helped us migrate our entire infrastructure to the cloud with zero downtime. Truly world-class engineering.</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ML</div>
+            <div class="testimonial-info">
+              <h5>Maria L.</h5>
+              <p>Founder of DataPulse</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-in">
+          <div class="quote-mark">"</div>
+          <blockquote>Working with Fluxiry felt like having a senior engineering team on demand. Their communication was clear, their code was clean, and the results spoke for themselves.</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">KT</div>
+            <div class="testimonial-info">
+              <h5>Kevin T.</h5>
+              <p>VP Engineering at ScaleUp</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner fade-in">
+        <h3>Ready to Ship Your Next Product?</h3>
+        <p>Let's talk about how Fluxiry can accelerate your development and help you scale.</p>
+        <a href="contact.html" class="btn btn-primary">Start a Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">FLUXIRY<span>.</span></a>
+          <p>High-performance software engineering for modern businesses. We build systems that scale.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="services.html">Custom Software</a>
+          <a href="services.html">Web Development</a>
+          <a href="services.html">Consulting</a>
+          <a href="services.html">Cloud Solutions</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:abdeddaimayoub@gmail.com">abdeddaimayoub@gmail.com</a>
+          <a href="contact.html">Get in Touch</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Fluxiry LLC. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+          </a>
+          <a href="#" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
