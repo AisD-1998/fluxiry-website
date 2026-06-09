@@ -1,172 +1,546 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Fluxiry LLC</title>
-  <meta name="description" content="Get in touch with Fluxiry LLC. Let's discuss your next software project.">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Fluxiry LLC</title>
+<meta name="description" content="Get in touch with Fluxiry LLC. Tell us about your next software project — you'll hear back from an engineer within one business day.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FLUXIRY — shared design system
+   palette: paper #F4F6F1 · ink #0E1B2C · flux #2743F0 · signal #FFC400
+   type: Unbounded (display) · Instrument Sans (body) · IBM Plex Mono (utility)
+   ============================================================ */
+
+:root{
+  --paper:#F4F6F1;
+  --ink:#0E1B2C;
+  --ink-soft:#42526B;
+  --flux:#2743F0;
+  --signal:#FFC400;
+  --line:#C9D1C6;
+  --card:#FCFDFB;
+  --radius:14px;
+  --display:'Unbounded', sans-serif;
+  --body:'Instrument Sans', sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  background-image:radial-gradient(circle, rgba(14,27,44,.08) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+a{color:inherit;text-decoration:none}
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline:3px solid var(--flux);outline-offset:3px;border-radius:4px;
+}
+::selection{background:var(--signal);color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- NAV ---------- */
+header.site-head{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,246,241,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:1rem}
+.logo{font-family:var(--display);font-weight:700;font-size:1.02rem;letter-spacing:.02em;display:flex;align-items:center;gap:.6rem}
+.logo .mark{display:block;flex:none}
+.logo .pkt{animation:pktpulse 2.4s ease-in-out infinite}
+@keyframes pktpulse{0%,100%{opacity:1}50%{opacity:.45}}
+nav ul{display:flex;gap:2rem;list-style:none;align-items:center}
+nav ul a{font-size:.92rem;font-weight:500;color:var(--ink-soft);transition:color .2s;padding:.2rem 0}
+nav ul a:hover{color:var(--flux)}
+nav ul a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--signal)}
+.btn{
+  display:inline-block;font-weight:600;font-size:.92rem;
+  padding:.7rem 1.4rem;border-radius:999px;border:2px solid var(--ink);
+  background:var(--ink);color:var(--paper);cursor:pointer;font-family:var(--body);
+  transition:transform .15s ease, background .2s, color .2s, box-shadow .2s;
+}
+.btn:hover{background:var(--flux);border-color:var(--flux);transform:translateY(-2px);box-shadow:0 8px 20px rgba(39,67,240,.25)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper);box-shadow:none}
+.menu-toggle{display:none;background:none;border:none;font-family:var(--mono);font-size:.8rem;cursor:pointer;color:var(--ink)}
+
+/* ---------- PAGE HERO ---------- */
+.hero{padding:96px 0 40px;position:relative;overflow:hidden}
+.page-hero{padding:80px 0 24px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);
+  border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;background:var(--card);
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(255,196,0,.25)}
+h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2.2rem, 5.6vw, 4.4rem);
+  line-height:1.08;letter-spacing:-.01em;
+  margin:1.4rem 0 1.2rem;max-width:16ch;
+}
+.page-hero h1{font-size:clamp(1.9rem, 4.6vw, 3.4rem)}
+h1 .flow{
+  color:var(--flux);
+  background:linear-gradient(90deg,var(--flux),#6E84FF,var(--flux));
+  background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{to{background-position:200% 0}}
+p.lede{max-width:54ch;font-size:1.13rem;color:var(--ink-soft)}
+.hero-cta{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+
+/* the flux stream (home hero) */
+.stream{display:block;width:100%;height:auto;margin-top:3rem}
+.stream .rail{fill:none;stroke:var(--line);stroke-width:2}
+.stream .live{fill:none;stroke:var(--flux);stroke-width:2.5;stroke-dasharray:10 14;animation:flowdash 1.4s linear infinite}
+@keyframes flowdash{to{stroke-dashoffset:-24}}
+.stream .station{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.stream .station.hot{stroke:var(--flux);fill:#fff}
+.stream text{font-family:var(--mono);font-size:11px;letter-spacing:.08em;fill:var(--ink-soft);text-transform:uppercase}
+.packet{fill:var(--signal);stroke:var(--ink);stroke-width:1.5}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+section{padding:88px 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.6rem}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.01em;max-width:26ch}
+.tag{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flux)}
+.tag::before{content:"// "}
+
+/* ---------- MODULE CARDS ---------- */
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.modules.two-col{grid-template-columns:repeat(2,1fr)}
+.module{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.8rem;position:relative;overflow:hidden;
+  transition:transform .2s ease, border-color .2s, box-shadow .2s;
+}
+.module:hover{transform:translateY(-5px);border-color:var(--flux);box-shadow:0 14px 30px rgba(14,27,44,.08)}
+.module .port{
+  width:44px;height:44px;border-radius:10px;display:grid;place-items:center;
+  background:var(--ink);color:var(--signal);margin-bottom:1.2rem;
+}
+.module:hover .port{background:var(--flux);color:#fff}
+.module h3{font-family:var(--display);font-weight:600;font-size:1.02rem;margin-bottom:.6rem}
+.module p{color:var(--ink-soft);font-size:.96rem}
+.module .io{
+  margin-top:1.4rem;padding-top:1rem;border-top:1px dashed var(--line);
+  font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);letter-spacing:.05em;
+}
+.module .io b{color:var(--flux);font-weight:500}
+.module .code{
+  position:absolute;top:1.3rem;right:1.4rem;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--line);
+}
+.module:hover .code{color:var(--signal)}
+
+/* ---------- PIPELINE (vertical) ---------- */
+.pipeline{position:relative;margin-top:1rem}
+.pipeline::before{
+  content:"";position:absolute;left:21px;top:8px;bottom:8px;width:2px;
+  background:repeating-linear-gradient(to bottom, var(--flux) 0 8px, transparent 8px 16px);
+}
+.stage{display:grid;grid-template-columns:44px 1fr;gap:1.4rem;padding:1.3rem 0;align-items:start}
+.stage .node{
+  width:44px;height:44px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--ink);display:grid;place-items:center;
+  font-family:var(--mono);font-size:.78rem;font-weight:500;position:relative;z-index:1;
+  transition:background .2s,border-color .2s;
+}
+.stage:hover .node{background:var(--signal)}
+.stage h3{font-family:var(--display);font-weight:600;font-size:1rem;margin-bottom:.25rem}
+.stage p{color:var(--ink-soft);max-width:62ch}
+.stage .meta{font-family:var(--mono);font-size:.72rem;color:var(--flux);letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- PROCESS (horizontal, services page) ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;counter-reset:step}
+.step{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.6rem;position:relative;
+}
+.step::after{
+  content:"→";position:absolute;right:-1.05rem;top:50%;transform:translateY(-50%);
+  color:var(--flux);font-size:1.1rem;z-index:1;
+}
+.step:last-child::after{content:none}
+.step .num{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--paper);
+  background:var(--ink);border-radius:999px;padding:.3rem .7rem;display:inline-block;margin-bottom:1rem;
+}
+.step:hover .num{background:var(--flux)}
+.step h3{font-family:var(--display);font-weight:600;font-size:.95rem;margin-bottom:.45rem}
+.step p{color:var(--ink-soft);font-size:.9rem}
+
+/* ---------- TICKER ---------- */
+.ticker-zone{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:1.1rem 0;overflow:hidden;background:var(--card)}
+.ticker{display:flex;gap:3rem;width:max-content;animation:scroll 28s linear infinite}
+.ticker-zone:hover .ticker{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.ticker span{font-family:var(--mono);font-size:.9rem;letter-spacing:.06em;color:var(--ink-soft);white-space:nowrap}
+.ticker span::before{content:"◆";color:var(--signal);margin-right:3rem;-webkit-text-stroke:1px var(--ink)}
+
+/* ---------- FACTS ---------- */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.fact{border-left:3px solid var(--flux);padding:.3rem 0 .3rem 1.1rem}
+.fact b{font-family:var(--display);font-weight:600;font-size:1.05rem;display:block;margin-bottom:.25rem}
+.fact span{color:var(--ink-soft);font-size:.92rem}
+
+/* ---------- NOTES (testimonials) ---------- */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.note{
+  background:var(--ink);color:var(--paper);border-radius:var(--radius);
+  padding:1.8rem;display:flex;flex-direction:column;gap:1.4rem;position:relative;
+}
+.note::before{content:"";position:absolute;top:14px;left:14px;width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.note blockquote{font-size:.98rem;line-height:1.65;color:#D7DEE9;font-style:italic}
+.note footer{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:#8FA0B8;text-transform:uppercase}
+.note footer b{display:block;color:var(--signal);font-weight:500;margin-bottom:.15rem}
+
+/* ---------- ABOUT: mission split + spec sheet ---------- */
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start}
+.split h2{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,2.8vw,2rem);margin-bottom:1.2rem;letter-spacing:-.01em}
+.split p{color:var(--ink-soft);margin-bottom:1rem}
+.spec{
+  background:var(--ink);color:var(--paper);border-radius:var(--radius);
+  padding:1.8rem;font-family:var(--mono);font-size:.82rem;
+}
+.spec .spec-title{color:var(--signal);letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+.spec .spec-title::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.spec dl{display:grid;grid-template-columns:auto 1fr;gap:.7rem 1.4rem}
+.spec dt{color:#8FA0B8;text-transform:uppercase;letter-spacing:.06em;font-size:.72rem}
+.spec dd{color:#E8EDF5}
+
+/* ---------- ABOUT: values ---------- */
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.value{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem;transition:border-color .2s, transform .2s;
+}
+.value:hover{border-color:var(--flux);transform:translateY(-4px)}
+.value .kw{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flux);display:block;margin-bottom:.7rem}
+.value h3{font-family:var(--display);font-weight:600;font-size:.98rem;margin-bottom:.5rem}
+.value p{color:var(--ink-soft);font-size:.9rem}
+
+/* ---------- ABOUT: team ---------- */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.person{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.8rem;transition:border-color .2s, transform .2s;
+}
+.person:hover{border-color:var(--flux);transform:translateY(-4px)}
+.avatar{
+  width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--signal);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.2rem;
+  margin-bottom:1.1rem;border:2px solid var(--ink);
+}
+.person:hover .avatar{background:var(--flux);color:#fff}
+.person h3{font-family:var(--display);font-weight:600;font-size:1rem}
+.person .role{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--flux);display:block;margin:.3rem 0 .8rem}
+.person p{color:var(--ink-soft);font-size:.92rem}
+
+/* ---------- CONTACT ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:start}
+.channel{display:grid;grid-template-columns:44px 1fr;gap:1.1rem;padding:1.1rem 0;border-bottom:1px dashed var(--line);align-items:start}
+.channel:last-of-type{border-bottom:none}
+.channel .port{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--ink);color:var(--signal)}
+.channel h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:.2rem}
+.channel p, .channel a{font-size:1rem;font-weight:500;color:var(--ink)}
+.channel a:hover{color:var(--flux)}
+.form-card{
+  background:var(--card);border:1.5px solid var(--ink);border-radius:var(--radius);
+  padding:2rem;position:relative;
+}
+.form-card::before{
+  content:"// new message";position:absolute;top:-0.7rem;left:1.4rem;
+  background:var(--signal);color:var(--ink);font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:6px;border:1.5px solid var(--ink);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.4rem}
+.field input, .field textarea{
+  width:100%;font-family:var(--body);font-size:.96rem;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--line);border-radius:10px;
+  padding:.75rem .9rem;transition:border-color .2s;
+}
+.field input:focus, .field textarea:focus{border-color:var(--flux);outline:none;box-shadow:0 0 0 3px rgba(39,67,240,.15)}
+.field textarea{resize:vertical;min-height:130px}
+.form-note{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);margin-top:.9rem;letter-spacing:.04em}
+
+/* ---------- CTA BAND ---------- */
+.cta-band{
+  background:var(--flux);color:#fff;border-radius:20px;
+  padding:clamp(2.4rem,6vw,4.5rem);text-align:center;position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1px);
+  background-size:22px 22px;
+}
+.cta-band h2{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:.8rem;position:relative}
+.cta-band p{color:#CBD4FF;max-width:46ch;margin:0 auto 2rem;position:relative}
+.cta-band .btn{background:var(--signal);border-color:var(--signal);color:var(--ink);position:relative}
+.cta-band .btn:hover{background:#fff;border-color:#fff;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+
+/* ---------- FOOTER ---------- */
+footer.site{border-top:1.5px solid var(--ink);margin-top:88px;padding:3.4rem 0 2rem;background:var(--card)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.6rem}
+.foot-grid h4{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.foot-grid a{font-size:.93rem;color:var(--ink-soft)}
+.foot-grid a:hover{color:var(--flux)}
+.foot-grid p{color:var(--ink-soft);font-size:.93rem;max-width:34ch;margin-top:.8rem}
+.legal{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);letter-spacing:.05em}
+
+/* ---------- REVEALS / MOTION ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .modules,.modules.two-col,.notes,.team{grid-template-columns:1fr 1fr}
+  .facts,.values{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .step::after{content:none}
+  .split,.contact-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  nav ul{
+    display:none;position:absolute;top:68px;left:0;right:0;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    flex-direction:column;padding:1.2rem 24px;gap:1.1rem;align-items:flex-start;
+  }
+  nav ul.open{display:flex}
+  .menu-toggle{display:block}
+  .nav > .btn{display:none}
+  .modules,.modules.two-col,.notes,.team,.steps,.values,.facts{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .hero{padding-top:64px}
+  .page-hero{padding-top:56px}
+}
+
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="container">
-      <nav class="nav">
-        <a href="index.html" class="nav-logo">FLUXIRY<span>.</span></a>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-        <a href="contact.html" class="nav-cta">Get in Touch</a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
-    </div>
-  </header>
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="logo" href="index.html">
+      <svg class="mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0E1B2C"/>
+        <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round">
+          <path d="M14 20 C 25 13, 36 27, 47 20"/>
+          <path d="M14 33 C 22 28, 30 38, 38 33"/>
+          <path d="M14 46 C 19 43, 23 49, 28 46"/>
+        </g>
+        <circle class="pkt" cx="53" cy="20" r="5" fill="#FFC400"/>
+      </svg>
+      FLUXIRY
+    </a>
+    <nav aria-label="Main">
+      <ul id="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="mailto:support@fluxiry.com">Email us</a>
+    <button class="menu-toggle" id="menuBtn" aria-expanded="false" aria-controls="menu">[ menu ]</button>
+  </div>
+</header>
 
-  <!-- Page Header -->
-  <section class="page-header">
-    <div class="container">
-      <p class="section-label fade-in">Contact Us</p>
-      <h1 class="section-title fade-in">Let's Start a <span class="gradient-text">Conversation</span></h1>
-      <p class="section-subtitle fade-in" style="margin: 0 auto;">Have a project in mind or just want to learn more? We'd love to hear from you.</p>
+<main>
+  <!-- PAGE HERO -->
+  <section class="hero page-hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Open channel</span>
+      <h1>Tell us what you're <span class="flow">shipping</span>.</h1>
+      <p class="lede">A new product, a stuck project, a system that needs to scale — whatever it is, you'll hear back from an engineer within one business day.</p>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="section">
-    <div class="container">
+  <!-- CONTACT -->
+  <section>
+    <div class="wrap">
       <div class="contact-grid">
-        <!-- Contact Info -->
-        <div class="fade-in">
-          <p class="section-label">Get in Touch</p>
-          <h2 class="section-title" style="font-size: 1.8rem;">We're Here to Help</h2>
-          <p style="color: var(--color-text-muted); margin-bottom: 2.5rem; line-height: 1.8;">Whether you're looking to start a new project, need technical guidance, or want to explore how we can work together — reach out and we'll respond promptly.</p>
+        <!-- CHANNELS -->
+        <div class="reveal">
+          <span class="tag">channels</span>
+          <h2 style="font-family:var(--display);font-weight:600;font-size:clamp(1.3rem,2.6vw,1.8rem);margin:.8rem 0 1.4rem">Ways to reach us</h2>
 
-          <div class="contact-info-item">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div class="channel">
+            <div class="port" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
             </div>
             <div>
-              <h4>Email</h4>
-              <p>abdeddaimayoub@gmail.com</p>
+              <h3>Email</h3>
+              <a href="mailto:support@fluxiry.com">support@fluxiry.com</a>
             </div>
           </div>
 
-          <div class="contact-info-item">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="channel">
+            <div class="port" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
             </div>
             <div>
-              <h4>Phone</h4>
-              <p>+1 (917) 352-8059</p>
+              <h3>Phone</h3>
+              <a href="tel:+19173528059">+1 (917) 352-8059</a>
             </div>
           </div>
 
-          <div class="contact-info-item">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="channel">
+            <div class="port" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
-              <h4>Location</h4>
+              <h3>Registered office</h3>
               <p>Sheridan, Wyoming, USA</p>
             </div>
           </div>
 
-          <div class="contact-info-item">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="channel">
+            <div class="port" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             </div>
             <div>
-              <h4>Business Hours</h4>
-              <p>Mon - Fri, 9:00 AM - 6:00 PM EST</p>
+              <h3>Business hours</h3>
+              <p>Mon – Fri · 9:00 AM – 6:00 PM EST</p>
             </div>
           </div>
         </div>
 
-        <!-- Contact Form -->
-        <div class="fade-in">
-          <form class="contact-form" id="contactForm">
+        <!-- FORM -->
+        <div class="form-card reveal">
+          <form id="contactForm" novalidate>
             <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required>
+              <div class="field">
+                <label for="firstName">First name</label>
+                <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
               </div>
-              <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required>
+              <div class="field">
+                <label for="lastName">Last name</label>
+                <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
               </div>
             </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
             </div>
-            <div class="form-group">
+            <div class="field">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" required>
+              <input type="text" id="subject" name="subject" placeholder="e.g. New web platform for our logistics team" required>
             </div>
-            <div class="form-group">
+            <div class="field">
               <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <textarea id="message" name="message" placeholder="What are you building? What's the timeline? Anything else we should know?" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; text-align: center;">Send Message</button>
+            <button type="submit" class="btn">Send message →</button>
+            <p class="form-note">// opens your email app addressed to support@fluxiry.com</p>
           </form>
         </div>
       </div>
     </div>
   </section>
+</main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="nav-logo">FLUXIRY<span>.</span></a>
-          <p>High-performance software engineering for modern businesses. We build systems that scale.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <a href="services.html">Custom Software</a>
-          <a href="services.html">Web Development</a>
-          <a href="services.html">Consulting</a>
-          <a href="services.html">Cloud Solutions</a>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <a href="mailto:abdeddaimayoub@gmail.com">abdeddaimayoub@gmail.com</a>
-          <a href="contact.html">Get in Touch</a>
-        </div>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="index.html">
+          <svg class="mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#0E1B2C"/>
+            <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round">
+              <path d="M14 20 C 25 13, 36 27, 47 20"/>
+              <path d="M14 33 C 22 28, 30 38, 38 33"/>
+              <path d="M14 46 C 19 43, 23 49, 28 46"/>
+            </g>
+            <circle cx="53" cy="20" r="5" fill="#FFC400"/>
+          </svg>
+          FLUXIRY
+        </a>
+        <p>An independent software engineering studio. We build systems that scale — and stay with them in production.</p>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Fluxiry LLC. All rights reserved.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="#" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
-          </a>
-          <a href="#" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </a>
-        </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Custom Software</a></li>
+          <li><a href="services.html">Web Platforms</a></li>
+          <li><a href="services.html">Cloud Solutions</a></li>
+          <li><a href="services.html">Consulting</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:support@fluxiry.com">support@fluxiry.com</a></li>
+          <li><a href="tel:+19173528059">+1 (917) 352-8059</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <div class="legal">
+      <span>© 2026 Fluxiry LLC. All rights reserved.</span>
+      <span>built with care · flux in motion</span>
+    </div>
+  </div>
+</footer>
 
-  <script src="js/main.js"></script>
+<script>
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '[ close ]' : '[ menu ]';
+  });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Contact form → opens the visitor's mail app addressed to support@fluxiry.com
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const f = this;
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    const name = f.firstName.value.trim() + ' ' + f.lastName.value.trim();
+    const subject = encodeURIComponent(f.subject.value.trim());
+    const body = encodeURIComponent(
+      f.message.value.trim() + '\n\n—\n' + name + '\n' + f.email.value.trim()
+    );
+    window.location.href = 'mailto:support@fluxiry.com?subject=' + subject + '&body=' + body;
+  });
+</script>
 </body>
 </html>

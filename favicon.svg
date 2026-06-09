@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Fluxiry mark">
+  <rect width="64" height="64" rx="14" fill="#0E1B2C"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round">
+    <path d="M14 20 C 25 13, 36 27, 47 20"/>
+    <path d="M14 33 C 22 28, 30 38, 38 33"/>
+    <path d="M14 46 C 19 43, 23 49, 28 46"/>
+  </g>
+  <circle cx="53" cy="20" r="5" fill="#FFC400"/>
+</svg>

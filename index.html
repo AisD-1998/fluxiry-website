@@ -1,272 +1,635 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fluxiry LLC | Modern Software Engineering</title>
-  <meta name="description" content="Fluxiry LLC builds high-performance software, scalable cloud systems, and intelligent digital products for modern businesses.">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluxiry LLC — Software, in a state of flow</title>
+<meta name="description" content="Fluxiry is an independent software engineering studio. We design, build, and run high-performance software and cloud systems — from first commit to production.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FLUXIRY — shared design system
+   palette: paper #F4F6F1 · ink #0E1B2C · flux #2743F0 · signal #FFC400
+   type: Unbounded (display) · Instrument Sans (body) · IBM Plex Mono (utility)
+   ============================================================ */
+
+:root{
+  --paper:#F4F6F1;
+  --ink:#0E1B2C;
+  --ink-soft:#42526B;
+  --flux:#2743F0;
+  --signal:#FFC400;
+  --line:#C9D1C6;
+  --card:#FCFDFB;
+  --radius:14px;
+  --display:'Unbounded', sans-serif;
+  --body:'Instrument Sans', sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  background-image:radial-gradient(circle, rgba(14,27,44,.08) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+a{color:inherit;text-decoration:none}
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline:3px solid var(--flux);outline-offset:3px;border-radius:4px;
+}
+::selection{background:var(--signal);color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- NAV ---------- */
+header.site-head{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,246,241,.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:1rem}
+.logo{font-family:var(--display);font-weight:700;font-size:1.02rem;letter-spacing:.02em;display:flex;align-items:center;gap:.6rem}
+.logo .mark{display:block;flex:none}
+.logo .pkt{animation:pktpulse 2.4s ease-in-out infinite}
+@keyframes pktpulse{0%,100%{opacity:1}50%{opacity:.45}}
+nav ul{display:flex;gap:2rem;list-style:none;align-items:center}
+nav ul a{font-size:.92rem;font-weight:500;color:var(--ink-soft);transition:color .2s;padding:.2rem 0}
+nav ul a:hover{color:var(--flux)}
+nav ul a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--signal)}
+.btn{
+  display:inline-block;font-weight:600;font-size:.92rem;
+  padding:.7rem 1.4rem;border-radius:999px;border:2px solid var(--ink);
+  background:var(--ink);color:var(--paper);cursor:pointer;font-family:var(--body);
+  transition:transform .15s ease, background .2s, color .2s, box-shadow .2s;
+}
+.btn:hover{background:var(--flux);border-color:var(--flux);transform:translateY(-2px);box-shadow:0 8px 20px rgba(39,67,240,.25)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper);box-shadow:none}
+.menu-toggle{display:none;background:none;border:none;font-family:var(--mono);font-size:.8rem;cursor:pointer;color:var(--ink)}
+
+/* ---------- PAGE HERO ---------- */
+.hero{padding:96px 0 40px;position:relative;overflow:hidden}
+.page-hero{padding:80px 0 24px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);
+  border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;background:var(--card);
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 3px rgba(255,196,0,.25)}
+h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2.2rem, 5.6vw, 4.4rem);
+  line-height:1.08;letter-spacing:-.01em;
+  margin:1.4rem 0 1.2rem;max-width:16ch;
+}
+.page-hero h1{font-size:clamp(1.9rem, 4.6vw, 3.4rem)}
+h1 .flow{
+  color:var(--flux);
+  background:linear-gradient(90deg,var(--flux),#6E84FF,var(--flux));
+  background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{to{background-position:200% 0}}
+p.lede{max-width:54ch;font-size:1.13rem;color:var(--ink-soft)}
+.hero-cta{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+
+/* the flux stream (home hero) */
+.stream{display:block;width:100%;height:auto;margin-top:3rem}
+.stream .rail{fill:none;stroke:var(--line);stroke-width:2}
+.stream .live{fill:none;stroke:var(--flux);stroke-width:2.5;stroke-dasharray:10 14;animation:flowdash 1.4s linear infinite}
+@keyframes flowdash{to{stroke-dashoffset:-24}}
+.stream .station{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.stream .station.hot{stroke:var(--flux);fill:#fff}
+.stream text{font-family:var(--mono);font-size:11px;letter-spacing:.08em;fill:var(--ink-soft);text-transform:uppercase}
+.packet{fill:var(--signal);stroke:var(--ink);stroke-width:1.5}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+section{padding:88px 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.6rem}
+.sec-head h2{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.01em;max-width:26ch}
+.tag{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flux)}
+.tag::before{content:"// "}
+
+/* ---------- MODULE CARDS ---------- */
+.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.modules.two-col{grid-template-columns:repeat(2,1fr)}
+.module{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.8rem;position:relative;overflow:hidden;
+  transition:transform .2s ease, border-color .2s, box-shadow .2s;
+}
+.module:hover{transform:translateY(-5px);border-color:var(--flux);box-shadow:0 14px 30px rgba(14,27,44,.08)}
+.module .port{
+  width:44px;height:44px;border-radius:10px;display:grid;place-items:center;
+  background:var(--ink);color:var(--signal);margin-bottom:1.2rem;
+}
+.module:hover .port{background:var(--flux);color:#fff}
+.module h3{font-family:var(--display);font-weight:600;font-size:1.02rem;margin-bottom:.6rem}
+.module p{color:var(--ink-soft);font-size:.96rem}
+.module .io{
+  margin-top:1.4rem;padding-top:1rem;border-top:1px dashed var(--line);
+  font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);letter-spacing:.05em;
+}
+.module .io b{color:var(--flux);font-weight:500}
+.module .code{
+  position:absolute;top:1.3rem;right:1.4rem;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--line);
+}
+.module:hover .code{color:var(--signal)}
+
+/* ---------- PIPELINE (vertical) ---------- */
+.pipeline{position:relative;margin-top:1rem}
+.pipeline::before{
+  content:"";position:absolute;left:21px;top:8px;bottom:8px;width:2px;
+  background:repeating-linear-gradient(to bottom, var(--flux) 0 8px, transparent 8px 16px);
+}
+.stage{display:grid;grid-template-columns:44px 1fr;gap:1.4rem;padding:1.3rem 0;align-items:start}
+.stage .node{
+  width:44px;height:44px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--ink);display:grid;place-items:center;
+  font-family:var(--mono);font-size:.78rem;font-weight:500;position:relative;z-index:1;
+  transition:background .2s,border-color .2s;
+}
+.stage:hover .node{background:var(--signal)}
+.stage h3{font-family:var(--display);font-weight:600;font-size:1rem;margin-bottom:.25rem}
+.stage p{color:var(--ink-soft);max-width:62ch}
+.stage .meta{font-family:var(--mono);font-size:.72rem;color:var(--flux);letter-spacing:.08em;text-transform:uppercase}
+
+/* ---------- PROCESS (horizontal, services page) ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;counter-reset:step}
+.step{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.6rem;position:relative;
+}
+.step::after{
+  content:"→";position:absolute;right:-1.05rem;top:50%;transform:translateY(-50%);
+  color:var(--flux);font-size:1.1rem;z-index:1;
+}
+.step:last-child::after{content:none}
+.step .num{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--paper);
+  background:var(--ink);border-radius:999px;padding:.3rem .7rem;display:inline-block;margin-bottom:1rem;
+}
+.step:hover .num{background:var(--flux)}
+.step h3{font-family:var(--display);font-weight:600;font-size:.95rem;margin-bottom:.45rem}
+.step p{color:var(--ink-soft);font-size:.9rem}
+
+/* ---------- TICKER ---------- */
+.ticker-zone{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:1.1rem 0;overflow:hidden;background:var(--card)}
+.ticker{display:flex;gap:3rem;width:max-content;animation:scroll 28s linear infinite}
+.ticker-zone:hover .ticker{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.ticker span{font-family:var(--mono);font-size:.9rem;letter-spacing:.06em;color:var(--ink-soft);white-space:nowrap}
+.ticker span::before{content:"◆";color:var(--signal);margin-right:3rem;-webkit-text-stroke:1px var(--ink)}
+
+/* ---------- FACTS ---------- */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.fact{border-left:3px solid var(--flux);padding:.3rem 0 .3rem 1.1rem}
+.fact b{font-family:var(--display);font-weight:600;font-size:1.05rem;display:block;margin-bottom:.25rem}
+.fact span{color:var(--ink-soft);font-size:.92rem}
+
+/* ---------- NOTES (testimonials) ---------- */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.note{
+  background:var(--ink);color:var(--paper);border-radius:var(--radius);
+  padding:1.8rem;display:flex;flex-direction:column;gap:1.4rem;position:relative;
+}
+.note::before{content:"";position:absolute;top:14px;left:14px;width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.note blockquote{font-size:.98rem;line-height:1.65;color:#D7DEE9;font-style:italic}
+.note footer{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:#8FA0B8;text-transform:uppercase}
+.note footer b{display:block;color:var(--signal);font-weight:500;margin-bottom:.15rem}
+
+/* ---------- ABOUT: mission split + spec sheet ---------- */
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start}
+.split h2{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,2.8vw,2rem);margin-bottom:1.2rem;letter-spacing:-.01em}
+.split p{color:var(--ink-soft);margin-bottom:1rem}
+.spec{
+  background:var(--ink);color:var(--paper);border-radius:var(--radius);
+  padding:1.8rem;font-family:var(--mono);font-size:.82rem;
+}
+.spec .spec-title{color:var(--signal);letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
+.spec .spec-title::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.spec dl{display:grid;grid-template-columns:auto 1fr;gap:.7rem 1.4rem}
+.spec dt{color:#8FA0B8;text-transform:uppercase;letter-spacing:.06em;font-size:.72rem}
+.spec dd{color:#E8EDF5}
+
+/* ---------- ABOUT: values ---------- */
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.value{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.5rem;transition:border-color .2s, transform .2s;
+}
+.value:hover{border-color:var(--flux);transform:translateY(-4px)}
+.value .kw{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--flux);display:block;margin-bottom:.7rem}
+.value h3{font-family:var(--display);font-weight:600;font-size:.98rem;margin-bottom:.5rem}
+.value p{color:var(--ink-soft);font-size:.9rem}
+
+/* ---------- ABOUT: team ---------- */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.person{
+  background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);
+  padding:1.8rem;transition:border-color .2s, transform .2s;
+}
+.person:hover{border-color:var(--flux);transform:translateY(-4px)}
+.avatar{
+  width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--signal);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.2rem;
+  margin-bottom:1.1rem;border:2px solid var(--ink);
+}
+.person:hover .avatar{background:var(--flux);color:#fff}
+.person h3{font-family:var(--display);font-weight:600;font-size:1rem}
+.person .role{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--flux);display:block;margin:.3rem 0 .8rem}
+.person p{color:var(--ink-soft);font-size:.92rem}
+
+/* ---------- CONTACT ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:start}
+.channel{display:grid;grid-template-columns:44px 1fr;gap:1.1rem;padding:1.1rem 0;border-bottom:1px dashed var(--line);align-items:start}
+.channel:last-of-type{border-bottom:none}
+.channel .port{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--ink);color:var(--signal)}
+.channel h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:.2rem}
+.channel p, .channel a{font-size:1rem;font-weight:500;color:var(--ink)}
+.channel a:hover{color:var(--flux)}
+.form-card{
+  background:var(--card);border:1.5px solid var(--ink);border-radius:var(--radius);
+  padding:2rem;position:relative;
+}
+.form-card::before{
+  content:"// new message";position:absolute;top:-0.7rem;left:1.4rem;
+  background:var(--signal);color:var(--ink);font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:6px;border:1.5px solid var(--ink);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.4rem}
+.field input, .field textarea{
+  width:100%;font-family:var(--body);font-size:.96rem;color:var(--ink);
+  background:var(--paper);border:1.5px solid var(--line);border-radius:10px;
+  padding:.75rem .9rem;transition:border-color .2s;
+}
+.field input:focus, .field textarea:focus{border-color:var(--flux);outline:none;box-shadow:0 0 0 3px rgba(39,67,240,.15)}
+.field textarea{resize:vertical;min-height:130px}
+.form-note{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);margin-top:.9rem;letter-spacing:.04em}
+
+/* ---------- CTA BAND ---------- */
+.cta-band{
+  background:var(--flux);color:#fff;border-radius:20px;
+  padding:clamp(2.4rem,6vw,4.5rem);text-align:center;position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1px);
+  background-size:22px 22px;
+}
+.cta-band h2{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:.8rem;position:relative}
+.cta-band p{color:#CBD4FF;max-width:46ch;margin:0 auto 2rem;position:relative}
+.cta-band .btn{background:var(--signal);border-color:var(--signal);color:var(--ink);position:relative}
+.cta-band .btn:hover{background:#fff;border-color:#fff;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+
+/* ---------- FOOTER ---------- */
+footer.site{border-top:1.5px solid var(--ink);margin-top:88px;padding:3.4rem 0 2rem;background:var(--card)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.6rem}
+.foot-grid h4{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1rem}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.foot-grid a{font-size:.93rem;color:var(--ink-soft)}
+.foot-grid a:hover{color:var(--flux)}
+.foot-grid p{color:var(--ink-soft);font-size:.93rem;max-width:34ch;margin-top:.8rem}
+.legal{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);letter-spacing:.05em}
+
+/* ---------- REVEALS / MOTION ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .modules,.modules.two-col,.notes,.team{grid-template-columns:1fr 1fr}
+  .facts,.values{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .step::after{content:none}
+  .split,.contact-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  nav ul{
+    display:none;position:absolute;top:68px;left:0;right:0;
+    background:var(--paper);border-bottom:1px solid var(--line);
+    flex-direction:column;padding:1.2rem 24px;gap:1.1rem;align-items:flex-start;
+  }
+  nav ul.open{display:flex}
+  .menu-toggle{display:block}
+  .nav > .btn{display:none}
+  .modules,.modules.two-col,.notes,.team,.steps,.values,.facts{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  section{padding:64px 0}
+  .hero{padding-top:64px}
+  .page-hero{padding-top:56px}
+}
+
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header" id="header">
-    <div class="container">
-      <nav class="nav">
-        <a href="index.html" class="nav-logo">FLUXIRY<span>.</span></a>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <a href="contact.html" class="nav-cta">Get in Touch</a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </nav>
-    </div>
-  </header>
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="logo" href="index.html">
+      <svg class="mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#0E1B2C"/>
+        <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round">
+          <path d="M14 20 C 25 13, 36 27, 47 20"/>
+          <path d="M14 33 C 22 28, 30 38, 38 33"/>
+          <path d="M14 46 C 19 43, 23 49, 28 46"/>
+        </g>
+        <circle class="pkt" cx="53" cy="20" r="5" fill="#FFC400"/>
+      </svg>
+      FLUXIRY
+    </a>
+    <nav aria-label="Main">
+      <ul id="menu">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="contact.html">Start a project</a>
+    <button class="menu-toggle" id="menuBtn" aria-expanded="false" aria-controls="menu">[ menu ]</button>
+  </div>
+</header>
 
-  <!-- Hero -->
+<main>
+  <!-- HERO -->
   <section class="hero">
-    <canvas class="hero-bg-canvas" id="heroCanvas"></canvas>
-    <div class="container">
-      <div class="hero-content fade-in">
-        <p class="hero-label">Software Engineering & Cloud Solutions</p>
-        <h1 class="hero-title">Building <em>Next-Gen</em> Software Solutions</h1>
-        <p class="hero-description">We engineer high-performance software, scalable cloud systems, and intelligent digital products that give your business a competitive edge.</p>
-        <div class="hero-actions">
-          <a href="services.html" class="btn btn-primary">Our Services</a>
-          <a href="about.html" class="btn btn-outline">See Our Work</a>
-        </div>
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Software studio · Marrakesh → worldwide</span>
+      <h1>Software, in a state of <span class="flow">flow</span>.</h1>
+      <p class="lede">Fluxiry is an independent engineering studio. We design, build, and run the systems your business depends on — and we stay with them from first commit to production traffic.</p>
+      <div class="hero-cta">
+        <a class="btn" href="services.html">See what we build</a>
+        <a class="btn ghost" href="contact.html">Talk to an engineer</a>
       </div>
-      <div class="hero-code-block" id="heroCode">
-        <div class="hero-code-dots">
-          <span></span><span></span><span></span>
-        </div>
-        <div id="codeContent"></div>
-      </div>
+
+      <svg class="stream" viewBox="0 0 1080 150" role="img" aria-label="Pipeline diagram: idea flows through design and build to production">
+        <path class="rail" d="M40 100 C 220 100, 260 40, 420 40 S 640 110, 800 110 S 980 60, 1040 60"/>
+        <path class="live" id="fluxPath" d="M40 100 C 220 100, 260 40, 420 40 S 640 110, 800 110 S 980 60, 1040 60"/>
+        <circle class="station" cx="40" cy="100" r="9"/>
+        <circle class="station hot" cx="420" cy="40" r="9"/>
+        <circle class="station hot" cx="800" cy="110" r="9"/>
+        <circle class="station" cx="1040" cy="60" r="9"/>
+        <text x="28" y="130">Idea</text>
+        <text x="396" y="22">Design</text>
+        <text x="780" y="140">Build</text>
+        <text x="982" y="42">Production</text>
+        <circle class="packet" id="packet" r="6"/>
+      </svg>
     </div>
   </section>
 
-  <!-- Services Preview -->
-  <section class="section">
-    <div class="container">
-      <div class="fade-in">
-        <p class="section-label">What We Build</p>
-        <h2 class="section-title">End-to-End <span class="gradient-text">Software Solutions</span></h2>
-        <p class="section-subtitle">Engineered for performance, scalability, and impact — from concept to production.</p>
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Three modules. One system: yours.</h2>
+        <span class="tag">what we build</span>
       </div>
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-              <line x1="14" y1="4" x2="10" y2="20"></line>
-            </svg>
+      <div class="modules">
+        <article class="module reveal">
+          <div class="port" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
           </div>
           <h3>Custom Software</h3>
-          <p>Purpose-built applications designed for your specific workflows, powered by modern architectures and clean code.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
+          <p>Purpose-built applications shaped around your actual workflows — not the other way around. Modern architecture, clean code, no shortcuts that cost you later.</p>
+          <p class="io">in: <b>your problem</b> → out: <b>working product</b></p>
+        </article>
+        <article class="module reveal">
+          <div class="port" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
           </div>
-          <h3>Web Development</h3>
-          <p>High-performance websites and web applications that combine great design with seamless functionality.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-            </svg>
+          <h3>Web Platforms</h3>
+          <p>Fast, reliable websites and web applications where the design and the engineering pull in the same direction. Built to be measured, not just admired.</p>
+          <p class="io">in: <b>a brief</b> → out: <b>shipped platform</b></p>
+        </article>
+        <article class="module reveal">
+          <div class="port" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19a4.5 4.5 0 100-9 6 6 0 10-11.7 1.9A4 4 0 007 19h10.5z"/></svg>
           </div>
-          <h3>Technical Consulting</h3>
-          <p>Strategic guidance to help you navigate complex technology decisions and optimize your digital infrastructure.</p>
+          <h3>Cloud & Consulting</h3>
+          <p>Infrastructure that scales without surprises, and straight answers on hard technical decisions. We migrate, optimize, and de-risk — with zero-downtime as the bar.</p>
+          <p class="io">in: <b>complexity</b> → out: <b>clarity</b></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>How work moves through Fluxiry</h2>
+        <span class="tag">the pipeline</span>
+      </div>
+      <div class="pipeline">
+        <div class="stage reveal">
+          <div class="node">01</div>
+          <div>
+            <span class="meta">Discover</span>
+            <h3>We learn your system before we touch it</h3>
+            <p>Goals, constraints, existing code, the things that keep you up at night. We don't quote until we understand.</p>
+          </div>
+        </div>
+        <div class="stage reveal">
+          <div class="node">02</div>
+          <div>
+            <span class="meta">Architect</span>
+            <h3>Decisions on paper, before they're expensive</h3>
+            <p>A clear technical plan — stack, data model, infrastructure — that you can read, question, and own.</p>
+          </div>
+        </div>
+        <div class="stage reveal">
+          <div class="node">03</div>
+          <div>
+            <span class="meta">Build</span>
+            <h3>Short cycles, working software every week</h3>
+            <p>You see real progress in a staging environment, not status reports. Code reviewed, tested, documented as we go.</p>
+          </div>
+        </div>
+        <div class="stage reveal">
+          <div class="node">04</div>
+          <div>
+            <span class="meta">Ship</span>
+            <h3>Launch is an engineering task, not an event</h3>
+            <p>Automated deploys, monitoring, rollback plans. Going live should be the calmest day of the project.</p>
+          </div>
+        </div>
+        <div class="stage reveal">
+          <div class="node">05</div>
+          <div>
+            <span class="meta">Run</span>
+            <h3>We stay in the loop after launch</h3>
+            <p>Performance tuning, maintenance, and a direct line to the engineers who built it — not a ticket queue.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
-  <section class="section stats-section">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item fade-in">
-          <h3 data-target="50">0</h3>
-          <p>Projects Shipped</p>
-        </div>
-        <div class="stat-item fade-in">
-          <h3 data-target="30">0</h3>
-          <p>Clients Served</p>
-        </div>
-        <div class="stat-item fade-in">
-          <h3 data-target="5">0</h3>
-          <p>Years in Business</p>
-        </div>
-        <div class="stat-item fade-in">
-          <h3 data-target="99">0</h3>
-          <p>Client Satisfaction</p>
-        </div>
+  <!-- STACK TICKER -->
+  <div class="ticker-zone" aria-label="Technologies we work with">
+    <div class="ticker">
+      <span>React</span><span>Node.js</span><span>Python</span><span>TypeScript</span><span>AWS</span><span>Docker</span><span>PostgreSQL</span><span>Next.js</span>
+      <span>React</span><span>Node.js</span><span>Python</span><span>TypeScript</span><span>AWS</span><span>Docker</span><span>PostgreSQL</span><span>Next.js</span>
+    </div>
+  </div>
+
+  <!-- OPERATING FACTS -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>How we operate</h2>
+        <span class="tag">no fine print</span>
+      </div>
+      <div class="facts">
+        <div class="fact reveal"><b>Senior engineers only</b><span>The people you meet are the people who write your code.</span></div>
+        <div class="fact reveal"><b>You own everything</b><span>Code, infrastructure, documentation — handed over, not held hostage.</span></div>
+        <div class="fact reveal"><b>Fixed scope, clear price</b><span>Quoted after discovery, with no surprise invoices mid-project.</span></div>
+        <div class="fact reveal"><b>Async-first, worldwide</b><span>Fluent in remote collaboration across time zones.</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Tech Stack -->
-  <section class="section">
-    <div class="container">
-      <div class="fade-in" style="text-align: center;">
-        <p class="section-label">Our Stack</p>
-        <h2 class="section-title">Technologies We <span class="gradient-text">Work With</span></h2>
-        <p class="section-subtitle" style="margin: 0 auto;">We leverage modern, battle-tested technologies to build reliable, scalable systems.</p>
+  <!-- FIELD NOTES -->
+  <section id="notes">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Field notes from clients</h2>
+        <span class="tag">signal, not noise</span>
       </div>
-      <div class="tech-grid">
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg>
-          <span>React</span>
-        </div>
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
-          <span>Node.js</span>
-        </div>
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          <span>Python</span>
-        </div>
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 16V8l4 4 4-4v8"/></svg>
-          <span>TypeScript</span>
-        </div>
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-          <span>AWS</span>
-        </div>
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M9 14h6"/></svg>
-          <span>Docker</span>
-        </div>
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="6" rx="8" ry="4"/><path d="M4 6v6c0 2.2 3.6 4 8 4s8-1.8 8-4V6"/><path d="M4 12v6c0 2.2 3.6 4 8 4s8-1.8 8-4v-6"/></svg>
-          <span>PostgreSQL</span>
-        </div>
-        <div class="tech-item fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5z"/><path d="M12 22V12"/><path d="M2 7l10 5"/><path d="M22 7l-10 5"/></svg>
-          <span>Next.js</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="section" style="background: var(--color-bg-alt); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
-    <div class="container">
-      <div class="fade-in" style="text-align: center;">
-        <p class="section-label">What Clients Say</p>
-        <h2 class="section-title">Trusted by <span class="gradient-text">Growing Companies</span></h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-in">
-          <div class="quote-mark">"</div>
-          <blockquote>Fluxiry delivered our platform ahead of schedule with exceptional code quality. Their engineering team understood our requirements from day one and built exactly what we needed.</blockquote>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">JR</div>
-            <div class="testimonial-info">
-              <h5>James R.</h5>
-              <p>CTO at TechFlow</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-in">
-          <div class="quote-mark">"</div>
-          <blockquote>The technical depth of the Fluxiry team is remarkable. They helped us migrate our entire infrastructure to the cloud with zero downtime. Truly world-class engineering.</blockquote>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">ML</div>
-            <div class="testimonial-info">
-              <h5>Maria L.</h5>
-              <p>Founder of DataPulse</p>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card fade-in">
-          <div class="quote-mark">"</div>
-          <blockquote>Working with Fluxiry felt like having a senior engineering team on demand. Their communication was clear, their code was clean, and the results spoke for themselves.</blockquote>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">KT</div>
-            <div class="testimonial-info">
-              <h5>Kevin T.</h5>
-              <p>VP Engineering at ScaleUp</p>
-            </div>
-          </div>
-        </div>
+      <div class="notes">
+        <article class="note reveal">
+          <blockquote>"Fluxiry delivered our platform ahead of schedule with exceptional code quality. They understood our requirements from day one and built exactly what we needed."</blockquote>
+          <footer><b>James R.</b>CTO · TechFlow</footer>
+        </article>
+        <article class="note reveal">
+          <blockquote>"They helped us migrate our entire infrastructure to the cloud with zero downtime. The technical depth of the team is remarkable."</blockquote>
+          <footer><b>Maria L.</b>Founder · DataPulse</footer>
+        </article>
+        <article class="note reveal">
+          <blockquote>"Working with Fluxiry felt like having a senior engineering team on demand. Clear communication, clean code, results that spoke for themselves."</blockquote>
+          <footer><b>Kevin T.</b>VP Engineering · ScaleUp</footer>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section">
-    <div class="container">
-      <div class="cta-banner fade-in">
-        <h3>Ready to Ship Your Next Product?</h3>
-        <p>Let's talk about how Fluxiry can accelerate your development and help you scale.</p>
-        <a href="contact.html" class="btn btn-primary">Start a Project</a>
+  <section>
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Have something to build?</h2>
+        <p>Tell us what you're trying to ship. You'll hear back from an engineer — not a sales deck — within one business day.</p>
+        <a class="btn" href="contact.html">Start a project →</a>
       </div>
     </div>
   </section>
+</main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.html" class="nav-logo">FLUXIRY<span>.</span></a>
-          <p>High-performance software engineering for modern businesses. We build systems that scale.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="services.html">Services</a>
-          <a href="contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <a href="services.html">Custom Software</a>
-          <a href="services.html">Web Development</a>
-          <a href="services.html">Consulting</a>
-          <a href="services.html">Cloud Solutions</a>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <a href="mailto:abdeddaimayoub@gmail.com">abdeddaimayoub@gmail.com</a>
-          <a href="contact.html">Get in Touch</a>
-        </div>
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="index.html">
+          <svg class="mark" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#0E1B2C"/>
+            <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round">
+              <path d="M14 20 C 25 13, 36 27, 47 20"/>
+              <path d="M14 33 C 22 28, 30 38, 38 33"/>
+              <path d="M14 46 C 19 43, 23 49, 28 46"/>
+            </g>
+            <circle cx="53" cy="20" r="5" fill="#FFC400"/>
+          </svg>
+          FLUXIRY
+        </a>
+        <p>An independent software engineering studio. We build systems that scale — and stay with them in production.</p>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Fluxiry LLC. All rights reserved.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a href="#" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
-          </a>
-          <a href="#" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </a>
-        </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Custom Software</a></li>
+          <li><a href="services.html">Web Platforms</a></li>
+          <li><a href="services.html">Cloud Solutions</a></li>
+          <li><a href="services.html">Consulting</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:support@fluxiry.com">support@fluxiry.com</a></li>
+          <li><a href="contact.html">Get in touch</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <div class="legal">
+      <span>© 2026 Fluxiry LLC. All rights reserved.</span>
+      <span>built with care · flux in motion</span>
+    </div>
+  </div>
+</footer>
 
-  <script src="js/main.js"></script>
+<script>
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('menu');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.textContent = open ? '[ close ]' : '[ menu ]';
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const path = document.getElementById('fluxPath');
+  const packet = document.getElementById('packet');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (path && packet && !reduced) {
+    const len = path.getTotalLength();
+    let t = 0;
+    (function travel(){
+      t = (t + 0.0022) % 1;
+      const p = path.getPointAtLength(t * len);
+      packet.setAttribute('cx', p.x);
+      packet.setAttribute('cy', p.y);
+      requestAnimationFrame(travel);
+    })();
+  } else if (path && packet) {
+    const p = path.getPointAtLength(path.getTotalLength() * 0.5);
+    packet.setAttribute('cx', p.x);
+    packet.setAttribute('cy', p.y);
+  }
+</script>
 </body>
 </html>

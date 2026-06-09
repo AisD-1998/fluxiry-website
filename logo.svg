@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" role="img" aria-label="Fluxiry logo">
+  <!-- Mark: the letter F drawn as three flow lines, with a data packet riding the top stream -->
+  <g fill="none" stroke="#2743F0" stroke-width="5" stroke-linecap="round">
+    <path d="M12 18 C 24 11, 36 25, 48 18"/>
+    <path d="M12 32 C 21 27, 29 37, 38 32"/>
+    <path d="M12 46 C 17 43, 21 49, 26 46"/>
+  </g>
+  <circle cx="55" cy="18" r="5.5" fill="#FFC400" stroke="#0E1B2C" stroke-width="2"/>
+  <!-- Wordmark -->
+  <text x="76" y="42" font-family="Unbounded, Arial Black, sans-serif" font-weight="700" font-size="24" letter-spacing="1" fill="#0E1B2C">FLUXIRY</text>
+</svg>
